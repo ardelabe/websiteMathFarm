@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <link rel="stylesheet" href="{% static 'mathFarmApp/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <p>Esse é o header do layout.html</p>
+        </header>
+        {% block body %}
+        {% endblock %}
+    </body>
+
+    <footer>
+      <p>Esse é o footer do layout.html</p>
+    </footer>
+</html>
