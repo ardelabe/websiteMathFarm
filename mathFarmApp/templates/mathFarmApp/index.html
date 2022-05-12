@@ -1,16 +1,17 @@
 {% extends "mathFarmApp/layout.html" %}
 
 {% block body %}
-    <h1 id="sum_question"></h1>
-    <form id="answer_form">
-        <input autofocus id="answer" placeholder="Enter your answer" type="text">
-        <input type="submit">
+    <h1>home</h1>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Login">
     </form>
-    <br>
-    <div id="correctMessage" class="alert alert-success" role="alert">
-        Yay! You got it right!
-    </div>
-    <div id="incorrectMessage" class="alert alert-danger" role="alert">
-        Oh, no! That's not correct...
-    </div>
+
+    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
 {% endblock %}
