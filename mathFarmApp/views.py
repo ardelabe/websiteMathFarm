@@ -1,3 +1,5 @@
+import random
+from socket import AF_KEY
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -5,12 +7,41 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import Max
 from django.contrib.auth.decorators import login_required
+from pkg_resources import add_activation_listener
 
 from .models import User
 
 # renders home page
 def index(request):
-    return render(request, "mathFarmApp/index.html")
+    typesOfExercise = ["addition", "subtraction", "multiplication", "division", "random"]
+    return render(request, "mathFarmApp/index.html", {
+        "typesOfExercise": typesOfExercise
+    })
+
+def exercise(request, type):
+    typesOfExercise = ["addition", "subtraction", "multiplication", "division", "random"]
+    verbs = ["plus", "minus", "times", "divided by"]
+    if type == typesOfExercise[0]:
+        verb = verbs[0]
+    elif type == typesOfExercise[1]:
+        verb = verbs[1]
+    elif type == typesOfExercise[2]:
+        verb = verbs[2]
+    elif type == typesOfExercise[3]:
+        verb = verbs[3]
+    else:
+        randomNumber = random.randint(0, 3)
+        type = typesOfExercise[randomNumber]
+        verb = verbs[randomNumber]
+
+    return render(request, "mathFarmApp/exercise.html", {
+        "type": type, 
+        "verb": verb,
+    })
+
+
+
+# BLOCKS OF CODE RELATED WITH LOGIN
 
 def login_view(request):
     if request.method == "POST":
