@@ -3,10 +3,10 @@ let secondRandomNumber = generateRandomInteger(10);
 console.log(firstRandomNumber)
 console.log(secondRandomNumber)
 
-// console.log(String(operationType))
+
 String(operationType)
 let result;
-if(operationType === "addition") {
+if (operationType === "addition") {
     console.log(operationType);
     result = firstRandomNumber + secondRandomNumber;
 } else if(operationType === "subtraction") {
@@ -22,21 +22,29 @@ if(operationType === "addition") {
 console.log(result)
 
 document.addEventListener('DOMContentLoaded', () => {
+    // console.log(document.querySelector('#score'))
+    // document.querySelector('#score').value = "point"
+    // console.log(document.querySelector('#score'))
+
     document.querySelector('#answer_form').onsubmit = () => {
         const answer = document.querySelector('#answer').value;
         console.log(answer);
-        if (answer == (parseInt(firstRandomNumber) + parseInt(secondRandomNumber))) {
-            // show message 'correct', send form to backend
-            // showMessage('correctMessage');
-            console.log('Correct');
+        console.log(result);
+
+        if(Number(answer) === result) {
+            console.log('CORRECT');
+            document.querySelector('#incorrect_alert').classList.add('d-none');
+            document.querySelector('#correct_alert').classList.remove('d-none');
+            document.querySelector('#score').value = "point"      
+            console.log(document.querySelector('#score')) 
         } else {
-            // show message 'incorrect', 
-            // showMessage('incorrectMessage');
-            console.log('incorrect');
+            console.log('INCORRECT');
+            document.querySelector('#correct_alert').classList.add('d-none');
+            document.querySelector('#incorrect_alert').classList.remove('d-none');
         }
         
 
         // stop form from submitting
-        return false;
+        // return false;
     }
 })

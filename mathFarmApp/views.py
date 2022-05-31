@@ -19,6 +19,13 @@ def index(request):
     })
 
 def exercise(request, type):
+    if request.user.is_authenticated:
+        print(request.user.is_authenticated)
+        if request.method == "POST":
+            data = request.POST
+            print(data)
+
+
     typesOfExercise = ["addition", "subtraction", "multiplication", "division", "random"]
     verbs = ["plus", "minus", "times", "divided by"]
     if type == typesOfExercise[0]:
