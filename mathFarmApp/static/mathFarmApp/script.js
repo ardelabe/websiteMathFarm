@@ -1,42 +1,42 @@
-// let var_test = 22;
-
-// Generate a number between 0 and 10, including 10
-function generateRandomInteger(max) {
-    return Math.floor(Math.random() * max) + 1;
-}
-
 let firstRandomNumber = generateRandomInteger(10);
 let secondRandomNumber = generateRandomInteger(10);
+console.log(firstRandomNumber)
+console.log(secondRandomNumber)
 
-function showMessage(message){
-    document.querySelector(`#${message}`).style.display = 'block';
+// console.log(String(operationType))
+String(operationType)
+let result;
+if(operationType === "addition") {
+    console.log(operationType);
+    result = firstRandomNumber + secondRandomNumber;
+} else if(operationType === "subtraction") {
+    console.log(operationType);
+    result = firstRandomNumber - secondRandomNumber;
+} else if(operationType === "multiplication") {
+    console.log(operationType);
+    result = firstRandomNumber * secondRandomNumber;    
+} else {
+    console.log(operationType)
+    result = (firstRandomNumber / secondRandomNumber).toFixed(2);
 }
-// function hideMessage(message){
-//     document.querySelector(`#${message}`).style.display = 'none';
-// }
+console.log(result)
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#sum_question').innerHTML = `${firstRandomNumber} | ${secondRandomNumber}`
-    // document.querySelector('#correctMessage').style.display = 'none';
-    // document.querySelector('#incorrectMessage').style.display = 'none';
-    // hideMessage('correctMessage')
-    // hideMessage('incorrectMessage')
     document.querySelector('#answer_form').onsubmit = () => {
         const answer = document.querySelector('#answer').value;
         console.log(answer);
         if (answer == (parseInt(firstRandomNumber) + parseInt(secondRandomNumber))) {
             // show message 'correct', send form to backend
-            showMessage('correctMessage');
+            // showMessage('correctMessage');
             console.log('Correct');
         } else {
             // show message 'incorrect', 
-            showMessage('incorrectMessage');
+            // showMessage('incorrectMessage');
             console.log('incorrect');
         }
-
+        
 
         // stop form from submitting
         return false;
     }
 })
-

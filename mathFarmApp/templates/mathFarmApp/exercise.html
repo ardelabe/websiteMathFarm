@@ -1,8 +1,23 @@
 {% extends "mathFarmApp/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <script type="text/javascript"> 
+        var operationType = "{{ type }}";
+    </script>
+    <script src="{% static 'mathFarmApp/utils.js' %}"></script>
+    <script src="{% static 'mathFarmApp/script.js' %}"></script>
+{% endblock %}
+
 
 {% block body %}
-
     <h2>Here's your {{ type }} math exercise! Good luck!</h2>
     <h2>How much is {{ verb }}</h2>
-
+    <form id="answer_form" >
+        <div class="form-group">
+            <label for="answer">Answer</label>
+            <input type="number" class="form-control" id="answer" placeholder="Enter your answer">
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 {% endblock %}
