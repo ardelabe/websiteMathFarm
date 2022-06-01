@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.db.models import Max
 from django.contrib.auth.decorators import login_required
 from pkg_resources import add_activation_listener
+from json import dumps
 
 from .models import User
 
@@ -24,7 +25,13 @@ def exercise(request, type):
         if request.method == "POST":
             data = request.POST
             print(data)
-
+            print(data["type"])
+            if (data["action"] == "point"):
+                print("got a point")
+            return render(request, "mathFarmApp/exercise.html", {
+                "type": data["type"], 
+                "verb": data["verb"],
+            })
 
     typesOfExercise = ["addition", "subtraction", "multiplication", "division", "random"]
     verbs = ["plus", "minus", "times", "divided by"]

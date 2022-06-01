@@ -3,7 +3,6 @@ let secondRandomNumber = generateRandomInteger(10);
 console.log(firstRandomNumber)
 console.log(secondRandomNumber)
 
-
 String(operationType)
 let result;
 if (operationType === "addition") {
@@ -17,20 +16,28 @@ if (operationType === "addition") {
     result = firstRandomNumber * secondRandomNumber;    
 } else {
     console.log(operationType)
-    result = (firstRandomNumber / secondRandomNumber).toFixed(2);
+    if(firstRandomNumber < secondRandomNumber) {
+        let temp;
+        temp = firstRandomNumber;
+        firstRandomNumber = secondRandomNumber;
+        secondRandomNumber = temp;
+    }
+    firstRandomNumber -= (firstRandomNumber % secondRandomNumber);
+    result = (firstRandomNumber / secondRandomNumber);
 }
-console.log(result)
+console.log(result);
+console.log(operationType);
+console.log(verbOfOperation);
+console.log(firstRandomNumber)
+console.log(secondRandomNumber)
 
 document.addEventListener('DOMContentLoaded', () => {
-    // console.log(document.querySelector('#score'))
-    // document.querySelector('#score').value = "point"
-    // console.log(document.querySelector('#score'))
-
+    let question = "How much is " + String(firstRandomNumber) + " " + String(verbOfOperation) + " " + String(secondRandomNumber) + "?";
+    document.querySelector('#question').innerHTML = question;
     document.querySelector('#answer_form').onsubmit = () => {
         const answer = document.querySelector('#answer').value;
         console.log(answer);
         console.log(result);
-
         if(Number(answer) === result) {
             console.log('CORRECT');
             document.querySelector('#incorrect_alert').classList.add('d-none');
@@ -42,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('#correct_alert').classList.add('d-none');
             document.querySelector('#incorrect_alert').classList.remove('d-none');
         }
-        
+    
 
         // stop form from submitting
         // return false;
