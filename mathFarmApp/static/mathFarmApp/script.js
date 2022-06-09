@@ -32,12 +32,13 @@ console.log(firstRandomNumber)
 console.log(secondRandomNumber)
 
 document.addEventListener('DOMContentLoaded', () => {
-    let question = "How much is " + String(firstRandomNumber) + " " + String(verbOfOperation) + " " + String(secondRandomNumber) + "?";
+    let question = "Quanto e " + String(firstRandomNumber) + " " + String(verbOfOperation) + " " + String(secondRandomNumber) + "?";
     document.querySelector('#question').innerHTML = question;
-    document.querySelector('#answer_form').onsubmit = () => {
+    document.querySelector('#next_button').disabled = true;
+    document.getElementById('answer_button').onclick = () => {
+        document.querySelector('#next_button').disabled = false;
+        document.querySelector('#answer_button').disabled = true;
         const answer = document.querySelector('#answer').value;
-        console.log(answer);
-        console.log(result);
         if(Number(answer) === result) {
             console.log('CORRECT');
             document.querySelector('#incorrect_alert').classList.add('d-none');
@@ -49,9 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('#correct_alert').classList.add('d-none');
             document.querySelector('#incorrect_alert').classList.remove('d-none');
         }
-    
+    }
+
+    // document.querySelector('#answer_form').onsubmit = () => {
+    //     const answer = document.querySelector('#answer').value;
+    //     console.log(answer);
+    //     console.log(result);
+    //     if(Number(answer) === result) {
+    //         console.log('CORRECT');
+    //         document.querySelector('#incorrect_alert').classList.add('d-none');
+    //         document.querySelector('#correct_alert').classList.remove('d-none');
+    //         document.querySelector('#score').value = "point"      
+    //         console.log(document.querySelector('#score')) 
+    //     } else {
+    //         console.log('INCORRECT');
+    //         document.querySelector('#correct_alert').classList.add('d-none');
+    //         document.querySelector('#incorrect_alert').classList.remove('d-none');
+    //     }
+        
 
         // stop form from submitting
-        // return false;
-    }
+    //     // return false;
+    // }
 })

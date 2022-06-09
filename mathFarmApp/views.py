@@ -14,27 +14,26 @@ from .models import User
 
 # renders home page
 def index(request):
-    typesOfExercise = ["addition", "subtraction", "multiplication", "division", "random"]
+    typesOfExercise = ["soma", "subtracao", "multiplicacao", "divisao", "aleatorio"]
     return render(request, "mathFarmApp/index.html", {
         "typesOfExercise": typesOfExercise
     })
 
 def exercise(request, type):
-    if request.user.is_authenticated:
-        print(request.user.is_authenticated)
-        if request.method == "POST":
-            data = request.POST
-            print(data)
-            print(data["type"])
-            if (data["action"] == "point"):
-                print("got a point")
-            return render(request, "mathFarmApp/exercise.html", {
-                "type": data["type"], 
-                "verb": data["verb"],
-            })
+    print(request.method)
+    if request.method == "POST":
+        data = request.POST
+        print(data)
+        print(data["type"])
+        if (data["action"] == "point"):
+            print("got a point")
+        return render(request, "mathFarmApp/exercise.html", {
+            "type": data["type"], 
+            "verb": data["verb"],
+        })
 
-    typesOfExercise = ["addition", "subtraction", "multiplication", "division", "random"]
-    verbs = ["plus", "minus", "times", "divided by"]
+    typesOfExercise = ["soma", "subtracao", "multiplicacao", "divisao", "aleatorio"]
+    verbs = ["mais", "menos", "vezes", "dividido por"]
     if type == typesOfExercise[0]:
         verb = verbs[0]
     elif type == typesOfExercise[1]:

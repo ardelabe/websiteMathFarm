@@ -12,23 +12,24 @@
 
 
 {% block body %}
-    <h2>Here's your {{ type }} math exercise! Good luck!</h2>
+    <h2>Aqui esta seu exercicio de {{ type }}! Boa sorte!</h2>
     <h2 id="question"></h2>
     <form action="{% url 'exercise' '{{ type }}' %}" method="post" id="answer_form">
         {% csrf_token %}
         <div class="form-group">
-            <label for="answer">Answer</label>
+            <!-- <label for="answer">Answer</label> -->
             <input type="hidden" name="action" value="nullValue" id="score">
             <input type="hidden" name="type" value="{{ type }}" id="score">
             <input type="hidden" name="verb" value="{{ verb }}" id="score">
             <input class="form-control" id="answer" placeholder="Enter your answer">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="answer_button">Resposta</button>
+        <button type="submit" class="btn btn-primary" id="next_button">Continuar</button>
     </form>
     <div class="alert alert-success d-none" id="correct_alert" role="alert">
-        Yay! You got it right! Here, take a point. 
+        Voce acertou e ganhou um ponto. 
     </div>
     <div class="alert alert-danger d-none" id="incorrect_alert"role="alert">
-        Oh, no! Your answer isn't right. No point for you. 
+        Voce errou - tente de novo. 
     </div>
 {% endblock %}
