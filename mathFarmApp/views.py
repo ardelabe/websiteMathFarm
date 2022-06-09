@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from pkg_resources import add_activation_listener
 from json import dumps
 
-from .models import User
+from .models import User, Score
 
 # renders home page
 def index(request):
@@ -20,16 +20,25 @@ def index(request):
     })
 
 def exercise(request, type):
-    print(request.method)
+    user_points = len(Score.objects.filter(student=request.user))
+    print(user_points)
+    # print(request.method)
     if request.method == "POST":
         data = request.POST
         print(data)
-        print(data["type"])
-        if (data["action"] == "point"):
-            print("got a point")
+        # print(data["type"])
+        if request.user.is_authenticated and (data["action"] == "point"):
+            # print("is auth")
+            # print("got a point")
+            student_id = request.user
+            type_of_exercise = data["type"]
+            # print(type_of_exercise)
+            score = Score(student=student_id, type_of_exercise=type_of_exercise, points=1)
+            score.save()
         return render(request, "mathFarmApp/exercise.html", {
             "type": data["type"], 
             "verb": data["verb"],
+            "user_points": user_points
         })
 
     typesOfExercise = ["soma", "subtracao", "multiplicacao", "divisao", "aleatorio"]
@@ -50,6 +59,7 @@ def exercise(request, type):
     return render(request, "mathFarmApp/exercise.html", {
         "type": type, 
         "verb": verb,
+        "user_points": user_points
     })
 
 
