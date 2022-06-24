@@ -1,16 +1,9 @@
 {% extends "mathFarmApp/layout.html" %}
 
 {% block body %}
-    <h1 id="sum_question"></h1>
-    <form id="answer_form">
-        <input autofocus id="answer" placeholder="Enter your answer" type="text">
-        <input type="submit">
-    </form>
-    <br>
-    <div id="correctMessage" class="alert alert-success" role="alert">
-        Yay! You got it right!
-    </div>
-    <div id="incorrectMessage" class="alert alert-danger" role="alert">
-        Oh, no! That's not correct...
-    </div>
+    {% for i in typesOfExercise %}
+    <p>
+        <a href="{% url 'exercise' i %}">{{ i }}</a>
+    </p>
+{% endfor %}
 {% endblock %}
