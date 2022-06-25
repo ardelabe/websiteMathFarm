@@ -1,0 +1,21 @@
+pyproject.toml
+websitemathfaarm/
+   __init__.py
+
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "websitemathfaarm"
+author = "Author Name"
+author-email = "lanzetti1@users.noreply.github.com"
+home-page = "https://github.com/lanzetti1/websiteMathFarm.git"
+
+requires=['numpy', 'matplotlib (>=2.1)']
+requires-python='>=3.6'
+
+description-file='README.md'
+classifiers=[
+'Development Status :: 4 - Beta',
+'Programming Language :: Python']
