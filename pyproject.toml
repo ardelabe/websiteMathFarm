@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "websitemathfarm"
 version = "0.1.0"
-description = ""
+description = "Project2"
 authors = ["lanzetti1 <claudiolamador@hotmail.com>"]
 
 [tool.poetry.dependencies]
@@ -12,3 +12,23 @@ python = "^3.10"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "websiteMathFarm"
+author = "Lanzetti1"
+author-email = "lanzetti1@users.noreply.github.com"
+home-page = "https://github.com/lanzetti1/websiteMathFarm.git"
+
+requires=['numpy', 'matplotlib (>=2.1)']
+requires-python='>=3.6'
+
+description-file='README.md'
+classifiers=[
+'Development Status :: 4 - Beta',
+'Programming Language :: Python']
